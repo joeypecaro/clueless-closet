@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --safe-area-inset-top: env(safe-area-inset-top);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-left: env(safe-area-inset-left);
+    --safe-area-inset-right: env(safe-area-inset-right);
+  }
+
+  html, body {
+    @apply h-full overflow-hidden;
+    background-color: #FAFAF8;
+    color: #1C1C1E;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent rubber-band scroll on iOS */
+    overscroll-behavior: none;
+  }
+
+  #root {
+    @apply h-full;
+    max-width: 430px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Mobile tap highlight */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth scrolling within containers */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+
+@layer components {
+  .tab-bar {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    max-width: 430px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.06);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .page-content {
+    @apply h-full overflow-y-auto;
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+    padding-top: env(safe-area-inset-top);
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-card;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-accent-yellow text-text-primary font-semibold
+           rounded-xl px-6 py-3 min-h-touch
+           transition-all duration-150 active:scale-95
+           select-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-neutral-100 text-text-primary font-medium
+           rounded-xl px-6 py-3 min-h-touch
+           transition-all duration-150 active:scale-95
+           select-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           text-text-secondary font-medium
+           rounded-xl px-4 py-2 min-h-touch
+           transition-all duration-150 active:bg-neutral-100
+           select-none;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 px-3 py-1.5
+           rounded-full text-sm font-medium
+           transition-all duration-150 select-none
+           cursor-pointer;
+  }
+
+  .chip-active {
+    @apply bg-accent-yellow text-text-primary;
+  }
+
+  .chip-inactive {
+    @apply bg-neutral-100 text-text-secondary;
+  }
+
+  .bottom-sheet-overlay {
+    @apply fixed inset-0 z-40 bg-black/30;
+    backdrop-filter: blur(2px);
+  }
+
+  .bottom-sheet {
+    @apply fixed bottom-0 left-0 right-0 z-50
+           bg-white rounded-t-3xl
+           max-w-[430px] mx-auto;
+    box-shadow: 0 -4px 32px 0 rgba(0, 0, 0, 0.12);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .sheet-handle {
+    @apply w-10 h-1 bg-neutral-200 rounded-full mx-auto mb-4;
+  }
+}
+
+@layer utilities {
+  .text-gradient-yellow {
+    background: linear-gradient(135deg, #F5C400 0%, #E8849A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .safe-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

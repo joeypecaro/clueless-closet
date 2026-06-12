@@ -1,0 +1,11 @@
+# Cloudflare Pages config
+# Not required for Pages deployment — build settings live in the dashboard.
+# This file is here for reference.
+#
+# Dashboard → Pages → Create a project → Connect to Git
+# Framework preset: None (or Vite)
+# Build command: npm run build
+# Build output directory: dist
+# Environment variables:
+#   VITE_SUPABASE_URL = https://your-ref.supabase.co
+#   VITE_SUPABASE_ANON_KEY = your-anon-key
