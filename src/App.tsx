@@ -1,14 +1,17 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
 import TabBar from './components/layout/TabBar'
 import HomePage from './pages/HomePage'
 import ClosetPage from './pages/ClosetPage'
 import ProfilePage from './pages/ProfilePage'
+import CalendarPage from './pages/CalendarPage'
 import AuthPage from './pages/AuthPage'
 
 function AppShell() {
   const { session, isLoading } = useAuth()
+  const location = useLocation()
+  const hideTabBar = location.pathname.startsWith('/calendar')
 
   if (isLoading) {
     return (
@@ -34,8 +37,9 @@ function AppShell() {
         <Route path="/home/*" element={<HomePage />} />
         <Route path="/closet/*" element={<ClosetPage />} />
         <Route path="/profile/*" element={<ProfilePage />} />
+        <Route path="/calendar/*" element={<CalendarPage />} />
       </Routes>
-      <TabBar />
+      {!hideTabBar && <TabBar />}
     </div>
   )
 }
